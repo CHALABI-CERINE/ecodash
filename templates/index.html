@@ -2,64 +2,135 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>EcoDash Algérie 2025</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Note pour l'évaluation : Titre du projet -->
+    <title>EcoDash Algérie 2025 - Projet Universitaire</title>
+    
+    <!-- Importation des Polices & Icones -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="pro-theme">
+<body class="dark-theme">
 
-    <aside class="side-nav">
-        <div class="logo">
-            <img src="{{ url_for('static', filename='img/usthb_logo.png') }}" alt="USTHB">
-            <span>DASH 2025</span>
-        </div>
-        
-        <div class="nav-links">
-            <button class="nav-btn active" onclick="showInfo('summary')">📊 Résumé Projet</button>
-            <button class="nav-btn" onclick="showInfo('details')">🔍 Détails Graphes</button>
-            <hr>
-            <button class="btn-report">📥 Rapport Final</button>
-        </div>
-    </aside>
+    <!-- Bouton pour l'affichage mobile -->
+    <button id="sidebarToggle" class="toggle-btn" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+    </button>
 
-    <main class="main-stage">
-        <header class="top-bar">
-            <h2>Analyse Stratégique Algérie</h2>
-            <img src="{{ url_for('static', filename='img/ons_logo.png') }}" class="ons">
-        </header>
+    <div class="app-container">
+        <!-- Barre latérale de navigation -->
+        <aside class="side-nav" id="sidebar">
+            <div class="logo-container">
+                <i class="fa-solid fa-chart-line logo-icon"></i>
+                <span class="logo-text">ECO-DASH <span class="highlight">2025</span></span>
+            </div>
+            <nav class="nav-links">
+                <button class="nav-btn active" onclick="showInfo('summary')">
+                    <i class="fa-solid fa-layer-group"></i> Résumé Global
+                </button>
+                <button class="nav-btn" onclick="showInfo('details')">
+                    <i class="fa-solid fa-microchip"></i> Détails Techniques
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <!-- Modification : Changement de <button> à <a> pour le téléchargement direct du PDF -->
+                <!-- Le fichier doit être placé dans static/img/Rapport_miniProjet.pdf -->
+                <a href="{{ url_for('static', filename='img/Rapport_miniProjet.pdf') }}" download="Rapport_miniProjet.pdf" class="btn-report" style="text-decoration: none;">
+                    <i class="fa-solid fa-file-pdf"></i> Télécharger Rapport
+                </a>
+                <p class="team-credit">Projet Étudiant 2025</p>
+            </div>
+        </aside>
 
-        <div class="grid-container">
-            <div class="card" onclick="zoom('chartPetrole', 'Marché de l\'Énergie')">
-                <div class="card-head">Zarzaitine vs Brent vs WTI</div>
-                <div class="canvas-wrap"><canvas id="chartPetrole"></canvas></div>
-            </div>
-            <div class="card" onclick="zoom('chartInflation', 'Inflation & IPC')">
-                <div class="card-head">Évolution du Pouvoir d'Achat</div>
-                <div class="canvas-wrap"><canvas id="chartInflation"></canvas></div>
-            </div>
-            <div class="card" onclick="zoom('chartRefuge', 'Protection des Réserves')">
-                <div class="card-head">Corrélation Or vs Pétrole</div>
-                <div class="canvas-wrap"><canvas id="chartRefuge"></canvas></div>
-            </div>
-            <div class="card" onclick="zoom('chartBudget', 'Loi de Finances 2025')">
-                <div class="card-head">Répartition Budgétaire</div>
-                <div class="canvas-wrap"><canvas id="chartBudget"></canvas></div>
-            </div>
-        </div>
-    </main>
+        <!-- Zone Principale d'affichage -->
+        <main class="main-stage">
+            <header class="top-bar">
+                <div class="header-content">
+                    <h1>Analyse Stratégique Nationale</h1>
+                    <p class="subtitle">Indicateurs de performance économique & sociale - Cadre Universitaire</p>
+                </div>
+                
+                <div class="header-actions">
+                    <!-- Ajout : Bouton de rafraîchissement des données -->
+                    <button class="badge-btn" onclick="window.location.reload()">
+                        <i class="fa-solid fa-rotate-right"></i> Rafraîchir
+                    </button>
+                    <div class="badge-ons">
+                        <i class="fa-solid fa-building-columns"></i> Source: ONS/MF
+                    </div>
+                </div>
+            </header>
 
+            <div class="grid-container">
+                <!-- Carte 1 : Pétrole -->
+                <div class="card fade-in-up delay-1" onclick="zoom('chartPetrole', 'Marché de l\'Énergie')">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-oil-well"></i> Baromètre Énergétique</h3>
+                        <i class="fa-solid fa-expand expand-icon"></i>
+                    </div>
+                    <div class="canvas-wrap"><canvas id="chartPetrole"></canvas></div>
+                </div>
+
+                <!-- Carte 2 : Inflation -->
+                <div class="card fade-in-up delay-2" onclick="zoom('chartInflation', 'Pouvoir d\'Achat & Inflation')">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-cart-shopping"></i> Inflation (IPC)</h3>
+                        <i class="fa-solid fa-expand expand-icon"></i>
+                    </div>
+                    <div class="canvas-wrap"><canvas id="chartInflation"></canvas></div>
+                </div>
+
+                <!-- Carte 3 : Valeurs Refuge -->
+                <div class="card fade-in-up delay-3" onclick="zoom('chartRefuge', 'Valeurs Refuge vs Crise')">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-coins"></i> Or vs Pétrole</h3>
+                        <i class="fa-solid fa-expand expand-icon"></i>
+                    </div>
+                    <div class="canvas-wrap"><canvas id="chartRefuge"></canvas></div>
+                </div>
+
+                <!-- Carte 4 : Budget -->
+                <div class="card fade-in-up delay-4" onclick="zoom('chartBudget', 'Loi de Finances 2025')">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-scale-balanced"></i> Budget de l'État</h3>
+                        <i class="fa-solid fa-expand expand-icon"></i>
+                    </div>
+                    <div class="canvas-wrap"><canvas id="chartBudget"></canvas></div>
+                </div>
+            </div>
+
+            <!-- Ajout du Footer comme demandé -->
+            <footer class="app-footer">
+                <p>Projet réalisé dans le cadre du module Pravan.</p>
+                <p class="small-text">Université - Année Universitaire 2025/2026</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Modale d'information -->
     <div id="infoBox" class="overlay">
         <div class="box-content">
-            <span class="close-box" onclick="closeBox()">&times;</span>
-            <h3 id="boxTitle"></h3>
+            <span class="close-box" onclick="closeBox()">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <div class="box-header">
+                <h3 id="boxTitle">Titre Info</h3>
+            </div>
             <div id="boxText" class="box-text"></div>
         </div>
     </div>
 
+    <!-- Modale de Zoom pour les graphiques -->
     <div id="zoomOverlay" class="overlay">
         <div class="zoom-content">
-            <span class="close-box" onclick="closeZoom()">&times;</span>
-            <h3 id="zoomTitle"></h3>
+            <span class="close-box" onclick="closeZoom()">
+                <i class="fa-solid fa-xmark"></i>
+            </span>
+            <div class="zoom-header">
+                <h3 id="zoomTitle">Titre Zoom</h3>
+            </div>
             <div class="zoom-body"><canvas id="zoomCanvas"></canvas></div>
         </div>
     </div>
