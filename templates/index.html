@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoDash Algérie 2025</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="pro-theme">
+
+    <aside class="side-nav">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/usthb_logo.png') }}" alt="USTHB">
+            <span>DASH 2025</span>
+        </div>
+        
+        <div class="nav-links">
+            <button class="nav-btn active" onclick="showInfo('summary')">📊 Résumé Projet</button>
+            <button class="nav-btn" onclick="showInfo('details')">🔍 Détails Graphes</button>
+            <hr>
+            <button class="btn-report">📥 Rapport Final</button>
+        </div>
+    </aside>
+
+    <main class="main-stage">
+        <header class="top-bar">
+            <h2>Analyse Stratégique Algérie</h2>
+            <img src="{{ url_for('static', filename='img/ons_logo.png') }}" class="ons">
+        </header>
+
+        <div class="grid-container">
+            <div class="card" onclick="zoom('chartPetrole', 'Marché de l\'Énergie')">
+                <div class="card-head">Zarzaitine vs Brent vs WTI</div>
+                <div class="canvas-wrap"><canvas id="chartPetrole"></canvas></div>
+            </div>
+            <div class="card" onclick="zoom('chartInflation', 'Inflation & IPC')">
+                <div class="card-head">Évolution du Pouvoir d'Achat</div>
+                <div class="canvas-wrap"><canvas id="chartInflation"></canvas></div>
+            </div>
+            <div class="card" onclick="zoom('chartRefuge', 'Protection des Réserves')">
+                <div class="card-head">Corrélation Or vs Pétrole</div>
+                <div class="canvas-wrap"><canvas id="chartRefuge"></canvas></div>
+            </div>
+            <div class="card" onclick="zoom('chartBudget', 'Loi de Finances 2025')">
+                <div class="card-head">Répartition Budgétaire</div>
+                <div class="canvas-wrap"><canvas id="chartBudget"></canvas></div>
+            </div>
+        </div>
+    </main>
+
+    <div id="infoBox" class="overlay">
+        <div class="box-content">
+            <span class="close-box" onclick="closeBox()">&times;</span>
+            <h3 id="boxTitle"></h3>
+            <div id="boxText" class="box-text"></div>
+        </div>
+    </div>
+
+    <div id="zoomOverlay" class="overlay">
+        <div class="zoom-content">
+            <span class="close-box" onclick="closeZoom()">&times;</span>
+            <h3 id="zoomTitle"></h3>
+            <div class="zoom-body"><canvas id="zoomCanvas"></canvas></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
