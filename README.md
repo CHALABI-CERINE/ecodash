@@ -1,13 +1,10 @@
 # 🇩🇿 Algérie Eco-Dash 2025 — Baromètre Économique
 
-<p align="center">
-  <img src="static/img/banner.png" alt="EcoDash Banner" width="100%" />
-</p>
 
 Bienvenue sur **Algérie Eco-Dash 2025**, un tableau de bord interactif conçu pour analyser les indicateurs clés de performance économique nationale.  Ce projet transforme des données brutes en visualisations dynamiques pour une meilleure compréhension de l'économie algérienne. 
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Module-PRAVAN-blue? style=for-the-badge&logo=university" />
+  <img src="https://img.shields.io/badge/Module-PRAVAN-blue?style=for-the-badge&logo=university" />
   <img src="https://img.shields.io/badge/University-USTHB-0056D2?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Session-2025%2F2026-lightgrey?style=for-the-badge" />
 </p>
@@ -97,7 +94,7 @@ Nous avons structuré le Dashboard autour de **4 questions stratégiques** :
 > **Comment le *Zarzaitine* se comporte-t-il face au *Brent* ? **
 
 | Visualisation | Insight Clé |
-|: ---:|:---|
+|:---:|:---|
 | 📈 Line Chart (Multi-axes) | Le brut algérien maintient une prime de qualité (+$0.5/baril) |
 
 ---
@@ -124,7 +121,7 @@ Nous avons structuré le Dashboard autour de **4 questions stratégiques** :
 > **Quelle est la structure de la Loi de Finances 2025 ?**
 
 | Visualisation | Insight Clé |
-|:---:|: ---|
+|:---:|:---|
 | 🍩 Doughnut (Répartition) | 75% du budget absorbe le Fonctionnement, limitant l'investissement |
 
 ---
@@ -271,6 +268,4 @@ Ce projet est réalisé dans un cadre universitaire à des fins éducatives.
   <strong>USTHB - Master 1 Big Data - 2025/2026</strong>
 </p>
 
-<p align="center">
-  Made with ❤️ by <strong>Team 1</strong>
-</p>
+
